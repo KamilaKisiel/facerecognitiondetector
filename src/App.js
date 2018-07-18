@@ -10,7 +10,7 @@ import './App.css';
 
 const app = new Clarifai.App({
   apiKey: 'b97e14c0588f44ac94bc6f03d29a5534'
- });
+});
 
 const particlesOptions = {
   particles: {
@@ -44,17 +44,21 @@ class App extends Component {
   }
 
   calculateFaceLocation = (data) => {
-
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box
+    const image = document.getElementById('inputImage')
+    const width = Number(image.width);
+    const height = Number(image.height);
+    console.log(width, height);
   }
 
   onInputChange = (event) => {
-    this.setState({input: event.target.value})
+    this.setState({ input: event.target.value })
   }
 
   onSubmit = () => {
-    this.setState({imageUrl: this.state.input})
+    this.setState({ imageUrl: this.state.input })
     app.models.predict(
-      Clarifai.FACE_DETECT_MODEL, 
+      Clarifai.FACE_DETECT_MODEL,
       this.state.input)
       .then(response => this.calculateFaceLocation(response))
       .catch(error => console.log(error))
@@ -73,7 +77,7 @@ class App extends Component {
           onInputChange={this.onInputChange}
           onSubmit={this.onSubmit}
         />
-        <FaceRecognition imageUrl={this.state.imageUrl}/>
+        <FaceRecognition imageUrl={this.state.imageUrl} />
       </div>
     );
   }
