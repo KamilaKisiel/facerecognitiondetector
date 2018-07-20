@@ -6,6 +6,7 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import SingIn from './components/SingIn/SingIn';
 import './App.css';
 
 const app = new Clarifai.App({
@@ -80,6 +81,7 @@ class App extends Component {
           params={particlesOptions}
         />
         <Navigation />
+        <SignIn />
         <Logo />
         <Rank />
         <ImageLinkForm
